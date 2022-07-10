@@ -7,11 +7,12 @@ import java.util.Timer;
 import java.util.stream.Collectors;
 
 class SlideShow extends JFrame {
-    public static List<String> used = new ArrayList<>();
-    public static List<String> using = new ArrayList<>();
-    public static List<String> tused = new ArrayList<>();
-    public static List<String> pused = new ArrayList<>();
-    public static List<String> images = new ArrayList<>();
+    public static String[] used = new String[0];
+    public static String[] using = new String[0];
+    public static String[] tused = new String[0];
+    public static String[] pused = new String[0];
+    public static String[] images = new String[0];
+    public static String[] ig = new String[0];
     public static JPanel panel = new JPanel(new FlowLayout());
     public static Label label = new Label();
     public static ImageIcon icon = new ImageIcon();
@@ -36,9 +37,38 @@ class SlideShow extends JFrame {
         grabImages();
 
     }
-    public void grabImages() {
+    public static void grabImages() {
         System.out.print("grabImages");
         ims = FileContentReader.main();
+    }
+
+    public static String[] genList() {
+        System.out.print("genlist");
+        ig = ims;
+        pused = using;
+        Set<String> tusedset = new HashSet<>(Arrays.asList(tused));  /*list(set(self.pused) | set(self.tused))*/
+        Set<String> pusedset = new HashSet<>(Arrays.asList(pused));
+        Set<String> igset = new HashSet<>(Arrays.asList(ig));
+        Set<String> usingset = new HashSet<>(Arrays.asList(using));
+        Set<String> usset = new HashSet<>(Arrays.asList(ims));
+
+        tusedset.addAll(pusedset);
+        usset.removeAll(tusedset);
+        String[] using = new String[usset.size()];
+        usset.toArray(using);
+        return using;
+
+
+
+
+    }
+
+    public static void loadImages(String[] im) {
+        /*add images to carousel*/
+        System.out.print("add images to caro");
+        for (int i = 0; i < im.length; i++) {
+            System.out.print(i);
+        }
     }
 }
 
@@ -47,7 +77,7 @@ class TimerHelper extends TimerTask {
     public int counter = 0;
     public void run() {
         SlideShow.panel.add(SlideShow.label);
-        System.out.print(SlideShow.ims[0]);
+
         if (counter == 0) {
             /*next slide*/
             System.out.print("if is true");
@@ -58,6 +88,13 @@ class TimerHelper extends TimerTask {
 
             }
             counter++;
+        } else {
+            SlideShow.ig = SlideShow.ims;
+            SlideShow.grabImages();
+            SlideShow.tused = null;
+            String[] x = SlideShow.genList();
+            /*clear carousel*/
+            SlideShow.loadImages(x);
         }
     }
 }
