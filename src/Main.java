@@ -19,6 +19,7 @@ class SlideShow extends JFrame {
     public static String[] ims;
 
     public SlideShow() {
+        grabImages();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300,300);
         setVisible(true);
@@ -33,20 +34,20 @@ class SlideShow extends JFrame {
 
         Timer timer = new Timer();
         TimerTask task = new TimerHelper();
-        timer.schedule(task, 0, 2000);
-        grabImages();
+        timer.schedule(task, 1000, 2000);
+
 
     }
     public static void grabImages() {
-        System.out.print("grabImages");
+        System.out.print("grabImages\n");
         ims = FileContentReader.main();
     }
 
     public static String[] genList() {
-        System.out.print("genlist");
+        System.out.print("genlist\n");
         ig = ims;
         pused = using;
-        Set<String> tusedset = new HashSet<>(Arrays.asList(tused));  /*list(set(self.pused) | set(self.tused))*/
+        Set<String> tusedset = new HashSet<>();
         Set<String> pusedset = new HashSet<>(Arrays.asList(pused));
         Set<String> igset = new HashSet<>(Arrays.asList(ig));
         Set<String> usingset = new HashSet<>(Arrays.asList(using));
@@ -54,20 +55,17 @@ class SlideShow extends JFrame {
 
         tusedset.addAll(pusedset);
         usset.removeAll(tusedset);
-        String[] using = new String[usset.size()];
+        using = new String[usset.size()];
         usset.toArray(using);
         return using;
-
-
-
-
     }
 
     public static void loadImages(String[] im) {
         /*add images to carousel*/
-        System.out.print("add images to caro");
+        System.out.print("add images to caro\n");
         for (int i = 0; i < im.length; i++) {
-            System.out.print(i);
+            System.out.print(im[i]);
+            System.out.print("\n");
         }
     }
 }
@@ -77,24 +75,24 @@ class TimerHelper extends TimerTask {
     public int counter = 0;
     public void run() {
         SlideShow.panel.add(SlideShow.label);
+        SlideShow.using = SlideShow.genList();
+        System.out.println(SlideShow.using.length);
 
-        if (counter == 0) {
-            /*next slide*/
+        if (SlideShow.using.length > 0) {
             System.out.print("if is true");
-            for (int d = 0; d < SlideShow.ims.length; d++) {
-                System.out.println("---------------");
-                System.out.println(d);
-                System.out.print(SlideShow.ims[d]);
-
+            for (int d = 0; d < SlideShow.using.length; d++) {
+                System.out.println(SlideShow.using[d]);
+                System.out.print("\n");
             }
-            counter++;
+
         } else {
             SlideShow.ig = SlideShow.ims;
-            SlideShow.grabImages();
-            SlideShow.tused = null;
+            /*SlideShow.grabImages();*/
+            SlideShow.tused = SlideShow.using;
             String[] x = SlideShow.genList();
             /*clear carousel*/
             SlideShow.loadImages(x);
+
         }
     }
 }
