@@ -91,6 +91,7 @@ class TimerHelper extends TimerTask {
             String[] x = SlideShow.genList();
             SlideShow.loadImages(x);
             counter = 0;
+
         }
     }
 }
