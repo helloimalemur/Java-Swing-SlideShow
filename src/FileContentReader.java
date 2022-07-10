@@ -26,7 +26,6 @@ public class FileContentReader {
             System.out.print("something fucked up");
         }
 
-        System.out.print(fileNames.size());
         String[] fileName = new String[fileNames.size()];
 
         for (int i = 0; i < fileNames.size(); i++) {

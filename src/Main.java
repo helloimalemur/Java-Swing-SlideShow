@@ -39,12 +39,12 @@ class SlideShow extends JFrame {
 
     }
     public static void grabImages() {
-        System.out.print("grabImages\n");
+        System.out.println("grabImages\n");
         ims = FileContentReader.main();
     }
 
     public static String[] genList() {
-        System.out.print("genlist\n");
+        System.out.println("genlist\n");
         ig = ims;
         pused = using;
         Set<String> tusedset = new HashSet<>();
@@ -57,15 +57,18 @@ class SlideShow extends JFrame {
         usset.removeAll(tusedset);
         using = new String[usset.size()];
         usset.toArray(using);
+        tusedset.toArray(tused);
+        igset.toArray(ig);
+        pusedset.toArray(pused);
         return using;
     }
 
     public static void loadImages(String[] im) {
         /*add images to carousel*/
-        System.out.print("add images to caro\n");
+        System.out.println("add images to caro\n");
         for (int i = 0; i < im.length; i++) {
-            System.out.print(im[i]);
-            System.out.print("\n");
+            System.out.println("for on files;");
+            System.out.println(im[i]);
         }
     }
 }
@@ -76,23 +79,19 @@ class TimerHelper extends TimerTask {
     public void run() {
         SlideShow.panel.add(SlideShow.label);
         SlideShow.using = SlideShow.genList();
+        System.out.println("using length:");
         System.out.println(SlideShow.using.length);
 
-        if (SlideShow.using.length > 0) {
-            System.out.print("if is true");
-            for (int d = 0; d < SlideShow.using.length; d++) {
-                System.out.println(SlideShow.using[d]);
-                System.out.print("\n");
-            }
+        if (counter == 0) {
+            System.out.println("if is true");
+            counter = 1;
 
         } else {
-            SlideShow.ig = SlideShow.ims;
-            /*SlideShow.grabImages();*/
-            SlideShow.tused = SlideShow.using;
+            System.out.println("else!!!");
             String[] x = SlideShow.genList();
             /*clear carousel*/
             SlideShow.loadImages(x);
-
+            counter = 0;
         }
     }
 }
