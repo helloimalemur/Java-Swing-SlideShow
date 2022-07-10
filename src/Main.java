@@ -34,8 +34,8 @@ class SlideShow extends JFrame {
 
         Timer timer = new Timer();
         TimerTask task = new TimerHelper();
-        timer.schedule(task, 1000, 2000);
-
+        timer.schedule(task, 1000, 5000);
+        /*add caro*/
 
     }
     public static void grabImages() {
@@ -64,32 +64,31 @@ class SlideShow extends JFrame {
     }
 
     public static void loadImages(String[] im) {
-        /*add images to carousel*/
-        System.out.println("add images to caro\n");
+        System.out.println("add images to caro");
         for (int i = 0; i < im.length; i++) {
             System.out.println("for on files;");
             System.out.println(im[i]);
+            /*load images into caro*/
         }
     }
 }
 
 
 class TimerHelper extends TimerTask {
-    public int counter = 0;
+    public int counter = 1;
     public void run() {
         SlideShow.panel.add(SlideShow.label);
-        SlideShow.using = SlideShow.genList();
-        System.out.println("using length:");
-        System.out.println(SlideShow.using.length);
 
         if (counter == 0) {
-            System.out.println("if is true");
+            System.out.println("SWIPING");
+            /*swipe on caro until end*/
             counter = 1;
 
         } else {
             System.out.println("else!!!");
-            String[] x = SlideShow.genList();
+
             /*clear carousel*/
+            String[] x = SlideShow.genList();
             SlideShow.loadImages(x);
             counter = 0;
         }
