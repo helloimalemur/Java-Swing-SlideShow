@@ -12,24 +12,29 @@ public class FileContentReader {
 
     private static final String FOLDER_PATH = "/home/foxx/Pictures/test/";
 
-    public static List<String> main() {
+    public static String[] main() {
         Path folderPath = Paths.get(FOLDER_PATH);
-
-        // prepare a data structure for a file's name and content
-        Map<String, List<String>> linesOfFiles = new TreeMap<String, List<String>>();
-
         // retrieve a list of the files in the folder
-        List<String> fileNames = new ArrayList<>();
+        ArrayList<String> fileNames = new ArrayList<>();
 
-        try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(folderPath)) {
-            for (Path path : directoryStream) {
-                fileNames.add(path.toString());
+        try {
+            DirectoryStream<Path> directoryStream = Files.newDirectoryStream(folderPath);
+            for (Path fpath : directoryStream) {
+                fileNames.add(fpath.toString());
             }
-        } catch (IOException ex) {
-            System.err.println("Error reading files");
-            ex.printStackTrace();
+        } catch(IOException e) {
+            System.out.print("something fucked up");
         }
-        return fileNames;
+
+        System.out.print(fileNames.size());
+        String[] fileName = new String[fileNames.size()];
+
+        for (int i = 0; i < fileNames.size(); i++) {
+            fileName[i] = fileNames.get(i);
+        }
+
+
+        return fileName;
     }
 
         /*// go through the list of files

@@ -4,10 +4,18 @@ import java.util.*;
 import java.nio.*;
 import java.util.List;
 import java.util.Timer;
+import java.util.stream.Collectors;
 
 class SlideShow extends JFrame {
+    public static List<String> used = new ArrayList<>();
+    public static List<String> using = new ArrayList<>();
+    public static List<String> tused = new ArrayList<>();
+    public static List<String> pused = new ArrayList<>();
+    public static List<String> images = new ArrayList<>();
     public static JPanel panel = new JPanel(new FlowLayout());
     public static Label label = new Label();
+    public static ImageIcon icon = new ImageIcon();
+    public static String[] ims;
 
     public SlideShow() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,38 +23,42 @@ class SlideShow extends JFrame {
         setVisible(true);
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
-        List<String> used = new ArrayList<>();
-        List<String> using = new ArrayList<>();
-        List<String> tused = new ArrayList<>();
-        List<String> pused = new ArrayList<>();
-        Timer timer = new Timer();
-        TimerTask task = new TimerHelper();
-        timer.schedule(task, 1000, 1000);
         add(panel);
         panel.setVisible(true);
-        label.setText("not null");
         label.setVisible(true);
+
+        label.setText("fuck you");
+
+
+        Timer timer = new Timer();
+        TimerTask task = new TimerHelper();
+        timer.schedule(task, 0, 2000);
+        grabImages();
+
+    }
+    public void grabImages() {
+        System.out.print("grabImages");
+        ims = FileContentReader.main();
     }
 }
 
-class Meth {
-    /*loads images */
-    public void LoadImages() {
-        List<String> x = FileContentReader.main();
-        System.out.println(x.toString().length());
-    }
-}
 
 class TimerHelper extends TimerTask {
     public int counter = 0;
     public void run() {
-        Meth x = new Meth();
-        x.LoadImages();
-        counter++;
-        System.out.println(counter);
         SlideShow.panel.add(SlideShow.label);
+        System.out.print(SlideShow.ims[0]);
+        if (counter == 0) {
+            /*next slide*/
+            System.out.print("if is true");
+            for (int d = 0; d < SlideShow.ims.length; d++) {
+                System.out.println("---------------");
+                System.out.println(d);
+                System.out.print(SlideShow.ims[d]);
 
-        SlideShow.label.setSize(counter, counter);
+            }
+            counter++;
+        }
     }
 }
 
