@@ -31,9 +31,6 @@ class SlideShow extends JFrame {
         add(panel);
         panel.setSize(300,300);
         panel.setVisible(true);
-
-
-
         Timer timer = new Timer();
         TimerTask task = new TimerHelper();
         timer.schedule(task, 1000, 5000);
