@@ -1,7 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.List;
 import java.util.Timer;
+import javax.imageio.ImageIO;
 
 class SlideShow extends JFrame {
     public static String[] used = new String[0];
@@ -11,7 +17,7 @@ class SlideShow extends JFrame {
     public static String[] images = new String[0];
     public static String[] redunantimageglob = new String[0];
     public static JPanel panel = new JPanel(new FlowLayout());
-    public static Label label = new Label();
+    public static JLabel piclabel = new JLabel();
     public static ImageIcon icon = new ImageIcon();
     public static String[] imageglob;
 
@@ -23,10 +29,9 @@ class SlideShow extends JFrame {
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
         add(panel);
+        panel.setSize(300,300);
         panel.setVisible(true);
-        label.setVisible(true);
 
-        label.setText("fuck you");
 
 
         Timer timer = new Timer();
@@ -60,10 +65,23 @@ class SlideShow extends JFrame {
 
     public static void loadImages(String[] imagepaths) { /**/
         System.out.println("add images to caro"); /**/
+
         for (int i = 0; i < imagepaths.length; i++) { /**/
-            System.out.println("for on files;"); /**/
+            /**/
             System.out.println(imagepaths[i]); /**/
-            /*load images into caro*/
+
+            try {
+                BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
+                JLabel pic = new JLabel(new ImageIcon(bufferedImage));
+                SlideShow.panel.add(pic);
+                panel.updateUI();
+                panel.setVisible(true);
+                pic.setVisible(true);
+                panel.updateUI();
+            } catch (IOException exception) {
+                System.out.println(exception);
+            }
+
         }
     }
 }
@@ -72,7 +90,7 @@ class SlideShow extends JFrame {
 class TimerHelper extends TimerTask {
     public int counter = 1;
     public void run() {
-        SlideShow.panel.add(SlideShow.label);
+
 
         if (counter == 0) {
             System.out.println("SWIPING");
@@ -81,8 +99,8 @@ class TimerHelper extends TimerTask {
 
         } else {
             System.out.println("else!!!");
-            SlideShow.loadImageGlob();
-            SlideShow.usedimages = new String[0];
+
+            /*SlideShow.usedimages = new String[0];*/
 
             /*clear carousel*/
             String[] x = SlideShow.genImageList();
