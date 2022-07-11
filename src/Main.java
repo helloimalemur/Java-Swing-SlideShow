@@ -1,25 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.nio.*;
-import java.util.List;
 import java.util.Timer;
-import java.util.stream.Collectors;
 
 class SlideShow extends JFrame {
     public static String[] used = new String[0];
-    public static String[] using = new String[0];
-    public static String[] tused = new String[0];
-    public static String[] pused = new String[0];
+    public static String[] usingimages = new String[0];
+    public static String[] usedimages = new String[0];
+    public static String[] previouslyusedimages = new String[0];
     public static String[] images = new String[0];
-    public static String[] ig = new String[0];
+    public static String[] redunantimageglob = new String[0];
     public static JPanel panel = new JPanel(new FlowLayout());
     public static Label label = new Label();
     public static ImageIcon icon = new ImageIcon();
-    public static String[] ims;
+    public static String[] imageglob;
 
     public SlideShow() {
-        grabImages();
+        loadImageGlob();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300,300);
         setVisible(true);
@@ -38,36 +35,36 @@ class SlideShow extends JFrame {
         /*add caro*/
 
     }
-    public static void grabImages() {
+    public static void loadImageGlob() {
         System.out.println("grabImages\n");
-        ims = FileContentReader.main();
+        imageglob = FileContentReader.main();
     }
 
-    public static String[] genList() {
+    public static String[] genImageList() {
         System.out.println("genlist\n");
-        ig = ims;
-        pused = using;
-        Set<String> tusedset = new HashSet<>();
-        Set<String> pusedset = new HashSet<>(Arrays.asList(pused));
-        Set<String> igset = new HashSet<>(Arrays.asList(ig));
-        Set<String> usingset = new HashSet<>(Arrays.asList(using));
-        Set<String> usset = new HashSet<>(Arrays.asList(ims));
+        redunantimageglob = imageglob;
+        previouslyusedimages = usingimages;
+        Set<String> usedimagesset = new HashSet<>();
+        Set<String> previouslyusedset = new HashSet<>(Arrays.asList(previouslyusedimages));
+        Set<String> imageglobset = new HashSet<>(Arrays.asList(redunantimageglob));
+        Set<String> usingset = new HashSet<>(Arrays.asList(usingimages));
+        Set<String> usingset = new HashSet<>(Arrays.asList(imageglob));
 
-        tusedset.addAll(pusedset);
-        usset.removeAll(tusedset);
-        using = new String[usset.size()];
-        usset.toArray(using);
-        tusedset.toArray(tused);
-        igset.toArray(ig);
-        pusedset.toArray(pused);
-        return using;
+        usedimagesset.addAll(previouslyusedset); /*add prev used to empty set*/
+        usingset.removeAll(usedimagesset); /**/
+        usingimages = new String[usingset.size()]; /**/
+        usingset.toArray(usingimages); /**/
+        usedimagesset.toArray(usedimages); /**/
+        imageglobset.toArray(redunantimageglob); /**/
+        previouslyusedset.toArray(previouslyusedimages); /**/
+        return usingimages; /**/
     }
 
-    public static void loadImages(String[] im) {
-        System.out.println("add images to caro");
-        for (int i = 0; i < im.length; i++) {
-            System.out.println("for on files;");
-            System.out.println(im[i]);
+    public static void loadImages(String[] imagepaths) { /**/
+        System.out.println("add images to caro"); /**/
+        for (int i = 0; i < imagepaths.length; i++) { /**/
+            System.out.println("for on files;"); /**/
+            System.out.println(imagepaths[i]); /**/
             /*load images into caro*/
         }
     }
@@ -86,9 +83,11 @@ class TimerHelper extends TimerTask {
 
         } else {
             System.out.println("else!!!");
+            SlideShow.loadImageGlob();
+            SlideShow.usedimages = new String[0];
 
             /*clear carousel*/
-            String[] x = SlideShow.genList();
+            String[] x = SlideShow.genImageList();
             SlideShow.loadImages(x);
             counter = 0;
 
