@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
+/*Takes path input and returns String Array <String[]> of paths*/
 public class FileContentReader {
 
     private static final String FOLDER_PATH = "/home/foxx/Pictures/test/";
 
-    public static String[] main() {
+    public static String[] getFiles() {
         Path folderPath = Paths.get(FOLDER_PATH);
         // retrieve a list of the files in the folder
         ArrayList<String> fileNames = new ArrayList<>();
@@ -34,16 +34,4 @@ public class FileContentReader {
 
 
         return fileName;
-    }
-
-        /*// go through the list of files
-        for (String file : fileNames); {
-            try {
-                // put the file's name and its content into the data structure
-                List<String> lines = Files.readAllLines(folderPath.resolve(file));
-                linesOfFiles.put(file, lines);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }*/
-    }
+    }}

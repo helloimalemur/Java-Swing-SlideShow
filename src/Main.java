@@ -39,7 +39,7 @@ class SlideShow extends JFrame {
     }
     public static void loadImageGlob() {
         System.out.println("grabImages\n");
-        imageglob = FileContentReader.main();
+        imageglob = FileContentReader.getFiles();
     }
 
     public static String[] genImageList() {
