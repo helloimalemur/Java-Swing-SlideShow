@@ -23,7 +23,7 @@ public class Slides {
 
     public void runner() {
         System.out.println("starting slideshow");
-
+        loadImages(genImageList());
     }
     public void loadImageGlob() {
         FileContentReader fcr = new FileContentReader(null);
@@ -54,19 +54,24 @@ public class Slides {
 
         for (int i = 0; i < imagepaths.length; i++) { /**/
             /**/
-            System.out.println(imagepaths[i]); /**/
+             /**/
 
             try {
                 BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
+                System.out.println(imagepaths[i]);
                 //scale image
                 Image image = bufferedImage.getScaledInstance(100,100, 0);
+
                 JLabel pic = new JLabel(new ImageIcon(image));
                 //JLabel pic = new JLabel(new ImageIcon(bufferedImage));
-                SlideShow.panel.add(pic);
-                panel.updateUI();
+
+                panel.add(pic);
                 panel.setVisible(true);
                 pic.setVisible(true);
+
+
                 panel.updateUI();
+
             } catch (IOException exception) {
                 System.out.println(exception);
             }
