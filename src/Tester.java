@@ -7,14 +7,8 @@ public class Tester {
 
 
 
-//load and print list of files in dir
-     FileContentReader fcr = new FileContentReader(null);
-     ArrayList<String> array = fcr.getFilesArray();
-
-     for (int i=0; i<array.size(); i++) {
-         System.out.println(array.get(i));
-     }
-//
+    Slides slides = new Slides();
+    slides.genImageList();
 
 
     }
