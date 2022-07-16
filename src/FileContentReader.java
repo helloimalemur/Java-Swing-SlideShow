@@ -9,14 +9,21 @@ import java.util.Map;
 import java.util.TreeMap;
 /*Takes path input and returns String Array <String[]> of paths*/
 public class FileContentReader {
+    private ArrayList<String> fileNames = new ArrayList<>();
+    private String FOLDER_PATH;
 
-    private static final String FOLDER_PATH = "/home/foxx/Pictures/test/";
+    public FileContentReader(String path) {
+        if (path == null) {
+            FOLDER_PATH = "/home/foxx/Pictures/test/";
+        } else {
+            FOLDER_PATH = path;
+        }
 
-    public static String[] getFiles() {
+    }
+
+    public String[] getFiles() {
         Path folderPath = Paths.get(FOLDER_PATH);
         // retrieve a list of the files in the folder
-        ArrayList<String> fileNames = new ArrayList<>();
-
         try {
             DirectoryStream<Path> directoryStream = Files.newDirectoryStream(folderPath);
             for (Path fpath : directoryStream) {
@@ -25,13 +32,16 @@ public class FileContentReader {
         } catch(IOException e) {
             System.out.print("something fucked up");
         }
-
         String[] fileName = new String[fileNames.size()];
-
         for (int i = 0; i < fileNames.size(); i++) {
             fileName[i] = fileNames.get(i);
         }
-
-
         return fileName;
-    }}
+    }
+
+    public ArrayList<String> getFilesArray() {
+        getFiles();
+        return fileNames;
+    }
+
+}
