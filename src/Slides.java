@@ -69,11 +69,15 @@ public class Slides {
                 panel.add(pic);
                 panel.setVisible(true);
                 pic.setVisible(true);
-
-                Thread.sleep(5000);
-
-
                 panel.updateUI();
+                try {
+                    Thread.sleep(5000);
+                } catch(Exception exception) {
+                    System.out.println(exception);
+                }
+                panel.remove(pic);
+
+
 
             } catch (IOException exception) {
                 System.out.println(exception);
