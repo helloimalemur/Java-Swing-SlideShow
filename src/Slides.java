@@ -21,7 +21,7 @@ public class Slides {
     public ImageIcon icon = new ImageIcon();
 
 
-    public void run() {
+    public void runner() {
         System.out.println("starting slideshow");
 
     }

@@ -9,18 +9,13 @@ class TimerHelper extends TimerTask {
     }
     public void run() {
         if (count == 0) {
-            System.out.println("SWIPING");
-            /*swipe on caro until end*/
+            System.out.println("Timer if count 0");
+            slides.runner();
             count = 1;
         } else {
-            System.out.println("else!!!");
-            /*SlideShow.usedimages = new String[0];*/
-            /*clear carousel*/
-            //slides.loadImages(slides.genImageList());
-            String[] x = slides.genImageList();
-            slides.loadImages(x);
+            System.out.println("Timer if count 1");
             count = 0;
 
         }
-        }
+    }
 }
