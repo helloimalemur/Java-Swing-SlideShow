@@ -6,7 +6,6 @@ import java.util.Timer;
 class SlideShow extends JFrame {
     public Slides slides = new Slides();
     public SlideShow() {
-        slides.loadImageGlob();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1000,1000);
         setVisible(true);
