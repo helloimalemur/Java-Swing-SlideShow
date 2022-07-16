@@ -10,9 +10,9 @@ class TimerHelper extends TimerTask {
     public void run() {
         if (count == 0) {
             try {
-                slides.runner();
+                slides.runner(); // load imageglob then cycle images into frame
             } catch(Exception exception) {
-                System.out.println(exception);
+                System.out.println(exception); //if something happens throw exception and clear images
                 count = 1;
             }
         } else {
