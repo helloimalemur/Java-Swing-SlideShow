@@ -16,16 +16,9 @@ class SlideShow extends JFrame {
         slides.panel.setVisible(true);
         Timer timer = new Timer();
         TimerTask task = new TimerHelper(slides);
-        timer.schedule(task, 000, 3000);
-        /*add caro*/
-
+        timer.schedule(task, 0, 3000);
     }
 }
-
-
-
-
-
 class Main{
     public static void main(String args[]){
         SlideShow slideshow = new SlideShow();

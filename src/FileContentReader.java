@@ -18,7 +18,6 @@ public class FileContentReader {
         } else {
             FOLDER_PATH = path;
         }
-
     }
 
     public String[] getFiles() {
@@ -43,5 +42,4 @@ public class FileContentReader {
         getFiles();
         return fileNames;
     }
-
 }

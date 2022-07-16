@@ -61,7 +61,7 @@ public class Slides {
                 BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
                 System.out.println(imagepaths[i]);
                 //scale image
-                Image image = bufferedImage.getScaledInstance(100,100, 0);
+                Image image = bufferedImage.getScaledInstance(1000,1000, 0);
 
                 JLabel pic = new JLabel(new ImageIcon(image));
                 //JLabel pic = new JLabel(new ImageIcon(bufferedImage));
