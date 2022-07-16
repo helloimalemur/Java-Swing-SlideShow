@@ -35,16 +35,7 @@ public class Slides {
     public String[] genImageList() {
         System.out.println("genlist\n");
         loadImageGlob();
-        redunantimageglob = imageglob;
-        previouslyusedimages = usingimages;
-        Set<String> usedimagesset = new HashSet<>();
-        Set<String> previouslyusedset = new HashSet<>(Arrays.asList(previouslyusedimages));
-        Set<String> imageglobset = new HashSet<>(Arrays.asList(redunantimageglob));
-        /*Set<String> usingset = new HashSet<>(Arrays.asList(usingimages));*/
         Set<String> usingset = new HashSet<>(Arrays.asList(imageglob));
-
-        usedimagesset.addAll(previouslyusedset); /*add prev used to empty set*/
-        usingset.removeAll(usedimagesset); /**/
         usingimages = new String[usingset.size()]; /**/
         usingset.toArray(usingimages); /**/
         return usingimages; /**/
