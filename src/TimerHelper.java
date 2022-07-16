@@ -14,6 +14,7 @@ class TimerHelper extends TimerTask {
             count = 1;
         } else {
             System.out.println("Timer if count 1");
+            slides.clearImages();
             count = 0;
 
         }

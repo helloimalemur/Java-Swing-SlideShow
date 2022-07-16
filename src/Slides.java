@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+
 public class Slides {
     public String[] imageglob = new String[0];
     public String[] used = new String[0];
@@ -69,6 +70,8 @@ public class Slides {
                 panel.setVisible(true);
                 pic.setVisible(true);
 
+                Thread.sleep(5000);
+
 
                 panel.updateUI();
 
@@ -77,5 +80,9 @@ public class Slides {
             }
 
         }
+    }
+
+    public void clearImages() {
+        panel.removeAll();
     }
 }
