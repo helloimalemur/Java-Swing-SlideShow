@@ -11,34 +11,19 @@ import java.util.Set;
 
 public class Slides {
     public String[] imageglob = new String[0];
-    public String[] used = new String[0];
-    public String[] usingimages = new String[0];
-    public String[] usedimages = new String[0];
-    public String[] previouslyusedimages = new String[0];
-    public String[] images = new String[0];
-    public String[] redunantimageglob = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
-    public JLabel piclabel = new JLabel();
-    public ImageIcon icon = new ImageIcon();
+
 
 
     public void runner() {
         System.out.println("starting slideshow");
-        loadImages(genImageList());
+        loadImages(loadImageGlob());
     }
-    public void loadImageGlob() {
-        FileContentReader fcr = new FileContentReader(null);
+    public String[] loadImageGlob() { //load images into String []
+        FileContentReader fcr = new FileContentReader(null); // path to images
         System.out.println("grabImages\n");
-        imageglob = fcr.getFiles();
-    }
-
-    public String[] genImageList() {
-        System.out.println("genlist\n");
-        loadImageGlob();
-        Set<String> usingset = new HashSet<>(Arrays.asList(imageglob));
-        usingimages = new String[usingset.size()]; /**/
-        usingset.toArray(usingimages); /**/
-        return usingimages; /**/
+        imageglob = fcr.getFiles(); // String []
+        return imageglob;
     }
 
     public void loadImages(String[] imagepaths) { /**/
@@ -55,7 +40,6 @@ public class Slides {
                 Image image = bufferedImage.getScaledInstance(1000,1000, 0);
 
                 JLabel pic = new JLabel(new ImageIcon(image));
-                //JLabel pic = new JLabel(new ImageIcon(bufferedImage));
 
                 panel.add(pic);
                 panel.setVisible(true);
