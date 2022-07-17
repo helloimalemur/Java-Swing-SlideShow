@@ -21,7 +21,14 @@ class SlideShow extends JFrame {
         setLayout(layout);
         //add panel created in Slides class and set visibility
         add(slides.panel);
-        slides.panel.setSize(1000,1000);
+        //slides.panel.setSize(1000,1000);
+        // set 'this' JFrame 'Slideshow' to fullscreen
+        //setExtendedState(this.MAXIMIZED_BOTH);
+        //setResizable(false);
+        //pack();
+        //setBackground(Color.BLACK);
+        slides.panel.setSize(getSize());
+        slides.panel.setBackground(Color.BLACK);
         slides.panel.setVisible(true);
         // set 'this' JFrame 'Slideshow' to be fullscreen
         device.setFullScreenWindow(SlideShow.this);

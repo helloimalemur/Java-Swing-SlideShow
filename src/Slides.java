@@ -1,18 +1,17 @@
+import org.imgscalr.Scalr;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.desktop.ScreenSleepListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class Slides {
     public String[] imageglob = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
+    public org.imgscalr.Scalr scalr = new Scalr();
 
 
 
@@ -27,6 +26,15 @@ public class Slides {
         return imageglob;
     }
 
+    //scaler
+    public BufferedImage scaling(BufferedImage resizeMe) {
+        //BufferedImage resizeMe = ImageIO.read(new File("orig.jpg"));
+        Dimension newMaxSize = new Dimension(SlideShow.device.getDisplayMode().getWidth()-20, SlideShow.device.getDisplayMode().getHeight()-20);
+        return scalr.resize(resizeMe, Scalr.Method.QUALITY,
+                newMaxSize.width, newMaxSize.height);
+    }
+
+    //
     public void loadImages(String[] imagepaths) { /**/
         System.out.println("add images to caro"); /**/
 
@@ -37,12 +45,14 @@ public class Slides {
             try {
                 BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
                 System.out.println(imagepaths[i]);
-                //scale image
-                Image image = bufferedImage.getScaledInstance(1000,1000, 0);
-
+                //scale image//
+                Image image = scaling(bufferedImage);
+                //Image image = bufferedImage.getScaledInstance(SlideShow.device.getDisplayMode().getWidth()+1, SlideShow.device.getDisplayMode().getHeight(), 0);
+                ////
                 JLabel pic = new JLabel(new ImageIcon(image));
 
                 panel.add(pic);
+                pic.setSize(panel.getSize());
                 panel.setVisible(true);
                 pic.setVisible(true);
                 panel.updateUI();
