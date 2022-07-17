@@ -4,12 +4,14 @@ import java.util.*;
 import java.util.Timer;
 
 class SlideShow extends JFrame {
+    public static GraphicsEnvironment graphics;
+    public static GraphicsDevice device;
 
     public Slides slides = new Slides(); //initialize Slides class
     public SlideShow() {
         //initialize graphics environment and attach to graphics device
-        GraphicsEnvironment graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice device = graphics.getDefaultScreenDevice();
+        graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        device = graphics.getDefaultScreenDevice();
         //on close
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //set JFrame 'Slideshow' size and visibility
@@ -28,6 +30,11 @@ class SlideShow extends JFrame {
         TimerTask task = new TimerHelper(slides);
         timer.schedule(task, 0, 3000);
     }
+
+    public static GraphicsDevice getDevice() {
+        return device;
+    }
+
 }
 class Main{
     public static void main(String args[]){
