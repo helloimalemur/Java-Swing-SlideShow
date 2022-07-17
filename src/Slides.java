@@ -50,11 +50,12 @@ public class Slides {
                 //Image image = bufferedImage.getScaledInstance(SlideShow.device.getDisplayMode().getWidth()+1, SlideShow.device.getDisplayMode().getHeight(), 0);
                 ////
                 JLabel pic = new JLabel(new ImageIcon(image));
-                Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight()-100);
+                Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
                 panel.setSize(dimension);
                 panel.setBackground(Color.BLACK);
                 panel.add(pic);
-                //pic.setSize(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
+                pic.setSize(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
+                //pic.setSize(panel.getSize());
                 pic.setVisible(true);
                 panel.setVisible(true);
                 panel.updateUI();
