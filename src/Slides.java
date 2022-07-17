@@ -52,9 +52,16 @@ public class Slides {
                 JLabel pic = new JLabel(new ImageIcon(image));
 
                 panel.add(pic);
-                pic.setSize(panel.getSize());
+                pic.setSize(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight()-100);
                 panel.setVisible(true);
                 pic.setVisible(true);
+
+                Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight()-100);
+                SlideShow.slides.panel.setSize(dimension);
+                SlideShow.slides.panel.setBackground(Color.BLACK);
+                SlideShow.slides.panel.setVisible(true);
+                
+                
                 panel.updateUI();
                 try {
                     Thread.sleep(5000);
