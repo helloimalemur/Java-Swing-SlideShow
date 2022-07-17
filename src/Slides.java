@@ -45,10 +45,7 @@ public class Slides {
             try {
                 BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
                 System.out.println(imagepaths[i]);
-                //scale image//
-                Image image = scaling(bufferedImage);
-                //Image image = bufferedImage.getScaledInstance(SlideShow.device.getDisplayMode().getWidth()+1, SlideShow.device.getDisplayMode().getHeight(), 0);
-                ////
+                Image image = scaling(bufferedImage); //scale image
                 JLabel pic = new JLabel(new ImageIcon(image));
                 Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
                 panel.setSize(dimension);
