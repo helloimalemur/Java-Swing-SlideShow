@@ -61,18 +61,12 @@ public class Slides {
                     System.out.println(exception);
                 }
                 panel.remove(pic);
-
-
-
             } catch (IOException exception) {
                 System.out.println(exception);
             }
 
         }
     }
-
-
-
     public void clearImages() {
         panel.removeAll();
     }
