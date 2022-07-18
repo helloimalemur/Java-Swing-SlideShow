@@ -41,7 +41,6 @@ public class Slides {
         for (int i = 0; i < imagepaths.length; i++) { /**/
             /**/
              /**/
-
             try {
                 BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
                 System.out.println(imagepaths[i]);
