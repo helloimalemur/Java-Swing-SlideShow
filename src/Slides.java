@@ -30,7 +30,7 @@ public class Slides {
     public BufferedImage scaling(BufferedImage resizeMe) {
         //BufferedImage resizeMe = ImageIO.read(new File("orig.jpg"));
         Dimension newMaxSize = new Dimension(SlideShow.device.getDisplayMode().getWidth()-20, SlideShow.device.getDisplayMode().getHeight()-20);
-        return scalr.resize(resizeMe, Scalr.Method.QUALITY,
+        return scalr.resize(resizeMe, Scalr.Method.ULTRA_QUALITY,
                 newMaxSize.width, newMaxSize.height);
     }
 
