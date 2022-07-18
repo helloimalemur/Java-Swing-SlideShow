@@ -7,7 +7,7 @@ class SlideShow extends JFrame {
     public static GraphicsEnvironment graphics;
     public static GraphicsDevice device;
 
-    public Slides slides = new Slides(); //initialize Slides class
+    public static Slides slides = new Slides(); //initialize Slides class
     public SlideShow() {
         //initialize graphics environment and attach to graphics device
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -27,9 +27,7 @@ class SlideShow extends JFrame {
         //setResizable(false);
         //pack();
         //setBackground(Color.BLACK);
-        slides.panel.setSize(getSize());
-        slides.panel.setBackground(Color.BLACK);
-        slides.panel.setVisible(true);
+
         // set 'this' JFrame 'Slideshow' to be fullscreen
         device.setFullScreenWindow(SlideShow.this);
         // start Timer schedule
