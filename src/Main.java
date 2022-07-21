@@ -46,10 +46,18 @@ class SlideShow extends JFrame {
     }
 
     public void pause() {
-        timer.cancel();
+        //timer.cancel();
+        //slides.panel.removeAll();
+        slides.pause = true;
+    }
+
+    public void resume() {
+        slides.pause = false;
     }
 
     public void start() {
+        slides.pause = false;
+        slides.panel.removeAll();
         timer = new Timer();
         TimerTask task = new TimerHelper(slides);
         timer.schedule(task, 0, 3000);
@@ -79,7 +87,8 @@ class SlideShow extends JFrame {
             }
 
             if (e.getKeyChar() == 'r') {
-                start();
+                //start();
+                resume();
             }
 
         }

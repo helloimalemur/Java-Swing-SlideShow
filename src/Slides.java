@@ -9,6 +9,7 @@ import java.io.IOException;
 
 
 public class Slides {
+    public boolean pause = false;
     public String[] imageglob = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
     public org.imgscalr.Scalr scalr = new Scalr();
@@ -38,29 +39,32 @@ public class Slides {
     public void loadImages(String[] imagepaths) { /**/
         System.out.println("add images to caro"); /**/
 
-        for (int i = 0; i < imagepaths.length; i++) { /**/
+        for (int i = 0; i <= imagepaths.length; i++) { /**/
             /**/
              /**/
             try {
-                BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
-                System.out.println(imagepaths[i]);
-                Image image = scaling(bufferedImage); //scale image
-                JLabel pic = new JLabel(new ImageIcon(image));
-                Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
-                panel.setSize(dimension);
-                panel.setBackground(Color.BLACK);
-                panel.add(pic);
-                pic.setSize(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
-                //pic.setSize(panel.getSize());
-                pic.setVisible(true);
-                panel.setVisible(true);
-                panel.updateUI();
-                try {
-                    Thread.sleep(5000);
-                } catch(Exception exception) {
-                    System.out.println(exception);
+                if (!pause) {
+                    BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
+                    System.out.println(imagepaths[i]);
+                    Image image = scaling(bufferedImage); //scale image
+                    JLabel pic = new JLabel(new ImageIcon(image));
+                    Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
+                    panel.setSize(dimension);
+                    panel.setBackground(Color.BLACK);
+                    panel.add(pic);
+                    pic.setSize(SlideShow.device.getDisplayMode().getWidth(),SlideShow.device.getDisplayMode().getHeight());
+                    //pic.setSize(panel.getSize());
+                    pic.setVisible(true);
+                    panel.setVisible(true);
+                    panel.updateUI();
+                    try {
+                        Thread.sleep(5000);
+                    } catch(Exception exception) {
+                        System.out.println(exception);
+                    }
+                    panel.remove(pic);
                 }
-                panel.remove(pic);
+
             } catch (IOException exception) {
                 System.out.println(exception);
             }
