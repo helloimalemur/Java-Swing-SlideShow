@@ -63,7 +63,7 @@ public class Slides {
                         System.out.println(exception);
                     }
                     panel.remove(pic);
-                }
+                } else {i--;}
 
             } catch (IOException exception) {
                 System.out.println(exception);
