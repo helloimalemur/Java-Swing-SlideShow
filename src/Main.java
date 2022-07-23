@@ -82,13 +82,21 @@ class SlideShow extends JFrame {
                 System.exit(0);
             }
 
-            if (e.getKeyChar() == 'p') {
+            if (e.getKeyChar() == 'p') { //pause when pressing "p" key
                 pause();
             }
 
             if (e.getKeyChar() == 'r') {
                 //start();
                 resume();
+            }
+
+            if (e.getKeyChar() == 'n') { //next when pressing "n" key
+                slides.next = true;
+            }
+
+            if (e.getKeyChar() == 'b') { //back when pressing "b" key
+                slides.back = true;
             }
 
         }
