@@ -50,13 +50,14 @@ class SlideShow extends JFrame {
     }
 
     public void start() {
-        slides.pause = false;
-        slides.waspaused = false;
-        slides.next = false;
-        slides.panel.removeAll();
-        slides.loadImageGlob(); //gets files glob and sets 'listofimages'
-        slides.cycleImages(slides.listofimages);
-        start();
+        while (!(slides == null)) {
+            slides.pause = false;
+            slides.waspaused = false;
+            slides.next = false;
+            slides.panel.removeAll();
+            slides.loadImageGlob(); //gets files glob and sets 'listofimages'
+            slides.cycleImages(slides.listofimages);
+        }
     }
 
     public class Keys implements KeyListener, ActionListener {
