@@ -17,6 +17,7 @@ class SlideShow extends JFrame {
 
     public static Slides slides = new Slides(); //initialize net.koonts.slideshow.Slides class
 
+
     public SlideShow() {
         //initialize graphics environment and attach to graphics device
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
