@@ -12,6 +12,7 @@ class SlideShow extends JFrame {
     public static GraphicsEnvironment graphics;
     public static GraphicsDevice device;
     public java.util.Timer timer = new Timer();
+    public String path;
 
 
     public static Slides slides = new Slides(); //initialize net.koonts.slideshow.Slides class
@@ -49,7 +50,7 @@ class SlideShow extends JFrame {
     public void start() {
         slides.pause = false;
         slides.panel.removeAll();
-        slides.loadImageGlob(); //gets files glob and sets 'listofimages'
+        slides.loadImageGlob(path); //gets files glob and sets 'listofimages'
         slides.cycleImages(slides.listofimages);
         start();
     }

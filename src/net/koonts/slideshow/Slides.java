@@ -22,8 +22,8 @@ public class Slides {
     public long slideinterval;
 
 
-    public void loadImageGlob() { //load images into String []
-        FileContentReader fcr = new FileContentReader(null); // path to images
+    public void loadImageGlob(String s) { //load images into String []
+        FileContentReader fcr = new FileContentReader(s); // path to images
         System.out.println("grabImages\n");
         listofimages = fcr.getFiles(); // String []
     }
