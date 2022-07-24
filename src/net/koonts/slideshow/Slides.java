@@ -1,4 +1,7 @@
-import org.imgscalr.Scalr;
+package net.koonts.slideshow;
+
+import net.koonts.slideshow.FileContentReader;
+import net.koonts.slideshow.Scalr;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,7 +18,7 @@ public class Slides {
     public boolean back = false;
     public String[] listofimages = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
-    public org.imgscalr.Scalr scalr = new Scalr();
+    public Scalr scalr = new Scalr();
     public long slideinterval;
 
 

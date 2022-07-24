@@ -1,3 +1,5 @@
+package net.koonts.slideshow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,10 +11,11 @@ import java.util.Timer;
 class SlideShow extends JFrame {
     public static GraphicsEnvironment graphics;
     public static GraphicsDevice device;
-    public Timer timer = new Timer();
+    public java.util.Timer timer = new Timer();
 
 
-    public static Slides slides = new Slides(); //initialize Slides class
+    public static Slides slides = new Slides(); //initialize net.koonts.slideshow.Slides class
+
     public SlideShow() {
         //initialize graphics environment and attach to graphics device
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -20,7 +23,7 @@ class SlideShow extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(1000,1000);
+        setSize(1000, 1000);
         setVisible(true);
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
@@ -72,7 +75,7 @@ class SlideShow extends JFrame {
             }
 
             if (e.getKeyChar() == 'z') { // z key decreased interval between slides
-                if(slides.slideinterval >= 3000) {
+                if (slides.slideinterval >= 3000) {
                     slides.slideinterval = slides.slideinterval - 2000;
                     System.out.println("interval: " + slides.slideinterval);
                 }
@@ -109,13 +112,9 @@ class SlideShow extends JFrame {
 
         }
     }
+
     public static GraphicsDevice getDevice() {
         return device;
     }
 
-}
-class Main{
-    public static void main(String args[]){
-        SlideShow slideshow = new SlideShow();
-    }
 }

@@ -1,3 +1,7 @@
+package net.koonts.slideshow;
+
+import net.koonts.slideshow.Slides;
+
 import java.util.TimerTask;
 
 
@@ -24,6 +28,6 @@ class TimerHelper extends TimerTask {
 }
 
 //
-//TimerTask task = new TimerHelper(slides);
+//TimerTask task = new net.koonts.slideshow.TimerHelper(slides);
 //timer.schedule(task, 0, slides.timerinterval);
 //
