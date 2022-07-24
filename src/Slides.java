@@ -36,6 +36,7 @@ public class Slides {
     //
     public void setImage(String[] imagepaths, int i) {
         try {
+            panel.removeAll();
             BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
             System.out.println(imagepaths[i]);
             Image image = scaleImage(bufferedImage); //scale image
@@ -49,8 +50,8 @@ public class Slides {
             pic.setVisible(true);
             panel.setVisible(true);
             panel.updateUI();
-            sleeper();
-            panel.remove(pic);
+            //sleeper();
+            //panel.remove(pic);
         } catch (IOException e) {
             System.out.println(e);
         }
@@ -76,14 +77,21 @@ public class Slides {
 
             if (i < 0) {i++;} // don't let back set i less than 0
 
-            if (!pause) { //pause when pressing "p" key //boolean set by keylistener
+            if (!pause) { //if pause is false //pause when pressing "p" key //boolean set by keylistener
+                if (waspaused) {pause = true;}// if we were paused before, pause again
                 setImage(pathlist, i);
-                if (waspaused) {pause = true;} // if going back when paused, stay paused
-            } else {
+                sleeper();
+
+            } else {//pause was true
                 i--; //increments i down to stay on current image
-                waspaused = true;
+                waspaused = true; //sets false with 'R' resume key listener
+
                 if (next) {
                     pause = false;
+                    next = false;
+                    //if (waspaused) {pause = true;}
+                    //setImage(pathlist, i+1);
+                    //sleeper();
                 }
             }
         }
