@@ -16,7 +16,8 @@ public class FileContentReader {
 
     public FileContentReader(String path) {
         if (path == null) {
-            FOLDER_PATH = "/home/foxx/Pictures/test/";
+            System.out.print("path is not valid.. Quitting..");
+            System.exit(0);
         } else {
             FOLDER_PATH = path;
         }
@@ -31,7 +32,8 @@ public class FileContentReader {
                 fileNames.add(fpath.toString());
             }
         } catch(IOException e) {
-            System.out.print("something fucked up");
+            System.out.print("unable to load images.. Quitting..");
+            System.exit(0);
         }
         String[] fileName = new String[fileNames.size()];
         for (int i = 0; i < fileNames.size(); i++) {

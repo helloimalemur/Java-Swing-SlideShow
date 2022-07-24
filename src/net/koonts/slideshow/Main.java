@@ -2,12 +2,16 @@ package net.koonts.slideshow;
 
 class Main {
     public static void main(String args[]){
-        SlideShow slideshow = new SlideShow();
-        String[] arguments = new String[args.length];
 
-        for (int i=0; i<args.length; i++) {
-            arguments[i] = args[i];
+        String arg1 = args[0];
+        System.out.println(arg1);
+
+        if (arg1 == null) {
+            System.out.println("no args taken");
+            arg1 = "/home/foxx/Pictures/test/";
+            System.out.println("set path to: " + arg1);
         }
-        slideshow.path = arguments[0];
+
+        SlideShow slideshow = new SlideShow(arg1);
     }
 }

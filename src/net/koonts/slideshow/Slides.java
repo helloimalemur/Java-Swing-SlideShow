@@ -1,8 +1,5 @@
 package net.koonts.slideshow;
 
-import net.koonts.slideshow.FileContentReader;
-import net.koonts.slideshow.Scalr;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -20,10 +17,14 @@ public class Slides {
     public JPanel panel = new JPanel(new FlowLayout());
     public Scalr scalr = new Scalr();
     public long slideinterval;
+    public String path;
 
+    public Slides(String s) {
+        path = s;
+    }
 
-    public void loadImageGlob(String s) { //load images into String []
-        FileContentReader fcr = new FileContentReader(s); // path to images
+    public void loadImageGlob() { //load images into String []
+        FileContentReader fcr = new FileContentReader(path); // path to images
         System.out.println("grabImages\n");
         listofimages = fcr.getFiles(); // String []
     }
@@ -81,15 +82,15 @@ public class Slides {
             if (i < 0) {i++;} // don't let back set i less than 0
 
             if (!pause) { //if pause is false //pause when pressing "p" key //boolean set by keylistener
-                if (waspaused) {pause = true;}// if we were paused before, pause again
                 setImage(pathlist, i);
                 sleeper();
+                if (waspaused) {pause = true;}// if we were paused before, pause again
 
             } else {//pause was true
                 i--; //increments i down to stay on current image
                 waspaused = true; //sets false with 'R' resume key listener
 
-                if (next && pause) {
+                if (next) {
                     pause = false;
                     next = false;
                 }

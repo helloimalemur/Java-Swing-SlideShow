@@ -12,13 +12,14 @@ class SlideShow extends JFrame {
     public static GraphicsEnvironment graphics;
     public static GraphicsDevice device;
     public java.util.Timer timer = new Timer();
-    public String path;
 
 
-    public static Slides slides = new Slides(); //initialize net.koonts.slideshow.Slides class
+
+    public static Slides slides; //initialize net.koonts.slideshow.Slides class
 
 
-    public SlideShow() {
+    public SlideShow(String paths) {
+        slides = new Slides(paths);
         //initialize graphics environment and attach to graphics device
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = graphics.getDefaultScreenDevice();
@@ -50,8 +51,10 @@ class SlideShow extends JFrame {
 
     public void start() {
         slides.pause = false;
+        slides.waspaused = false;
+        slides.next = false;
         slides.panel.removeAll();
-        slides.loadImageGlob(path); //gets files glob and sets 'listofimages'
+        slides.loadImageGlob(); //gets files glob and sets 'listofimages'
         slides.cycleImages(slides.listofimages);
         start();
     }
