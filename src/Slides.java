@@ -82,6 +82,7 @@ public class Slides {
             }
         }
     }
+
     public void clearImages() {
         panel.removeAll();
     }
