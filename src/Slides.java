@@ -86,7 +86,7 @@ public class Slides {
                 i--; //increments i down to stay on current image
                 waspaused = true; //sets false with 'R' resume key listener
 
-                if (next) {
+                if (next && pause) {
                     pause = false;
                     next = false;
                 }

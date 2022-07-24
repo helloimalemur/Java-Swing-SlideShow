@@ -40,6 +40,7 @@ class SlideShow extends JFrame {
     public void resume() {
         slides.pause = false;
         slides.waspaused = false;
+        slides.next = false;
     }
 
     public void start() {
