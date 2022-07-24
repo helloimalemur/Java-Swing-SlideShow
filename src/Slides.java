@@ -10,18 +10,18 @@ import java.io.IOException;
 
 public class Slides {
     public boolean pause = false;
+    public boolean waspaused = false;
     public boolean back = false;
-    public String[] imageglob = new String[0];
+    public String[] listofimages = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
     public org.imgscalr.Scalr scalr = new Scalr();
     public long slideinterval;
 
 
-    public String[] loadImageGlob() { //load images into String []
+    public void loadImageGlob() { //load images into String []
         FileContentReader fcr = new FileContentReader(null); // path to images
         System.out.println("grabImages\n");
-        imageglob = fcr.getFiles(); // String []
-        return imageglob;
+        listofimages = fcr.getFiles(); // String []
     }
 
     //scaler
@@ -60,21 +60,25 @@ public class Slides {
     }
 
 
-    public void cycleImages(String[] imagepaths) { /**/
-        System.out.println("add images to caro"); /**/
-
-        for (int i = 0; i <= imagepaths.length; i++) { /**/
-            if (back) { //back when pressing "b" key
+    public void cycleImages(String[] pathlist) { /**/
+        System.out.println("Starting.."); /**/
+        for (int i = 0; i < pathlist.length; i++) { /**/
+            if (back) { //back on b key //boolean set by keylistener
                 if (i > 0) {
-                    i = i - 2;
+                    i = i - 2; //increments down twice to get last image
+                    pause = false;
                     back = false;
                 }
-            }
+            } //back when pressing "b" key
+
             if (i < 0) {i++;} // don't let back set i less than 0
-            if (!pause) { //pause when pressing "p" key
-                setImage(imagepaths, i);
+
+            if (!pause) { //pause when pressing "p" key //boolean set by keylistener
+                setImage(pathlist, i);
+                if (waspaused) {pause = true;} // if going back when paused, stay paused
             } else {
-                i--;
+                i--; //increments i down to stay on current image
+                waspaused = true;
             }
         }
     }

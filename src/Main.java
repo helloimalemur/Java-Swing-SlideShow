@@ -39,12 +39,15 @@ class SlideShow extends JFrame {
 
     public void resume() {
         slides.pause = false;
+        slides.waspaused = false;
     }
 
     public void start() {
         slides.pause = false;
         slides.panel.removeAll();
-        slides.cycleImages(slides.loadImageGlob());
+        slides.loadImageGlob(); //gets files glob and sets 'listofimages'
+        slides.cycleImages(slides.listofimages);
+        start();
     }
 
     public class Keys implements KeyListener, ActionListener {
