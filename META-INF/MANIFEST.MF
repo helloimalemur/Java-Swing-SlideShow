@@ -1,1 +1,1 @@
-Main-Class: net.koonts.slideshow.Main;
+Main-Class: net.koonts.slideshow.Main
