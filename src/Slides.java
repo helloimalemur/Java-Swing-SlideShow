@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Slides {
     public boolean pause = false;
+    public boolean next = false;
     public boolean waspaused = false;
     public boolean back = false;
     public String[] listofimages = new String[0];
@@ -48,18 +49,20 @@ public class Slides {
             pic.setVisible(true);
             panel.setVisible(true);
             panel.updateUI();
-            try {
-                Thread.sleep(slideinterval);
-            } catch (Exception exception) {
-                System.out.println(exception);
-            }
+            sleeper();
             panel.remove(pic);
         } catch (IOException e) {
             System.out.println(e);
         }
     }
 
-
+    public void sleeper() {
+        try {
+            Thread.sleep(slideinterval);
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
+    }
     public void cycleImages(String[] pathlist) { /**/
         System.out.println("Starting.."); /**/
         for (int i = 0; i < pathlist.length; i++) { /**/
@@ -79,6 +82,9 @@ public class Slides {
             } else {
                 i--; //increments i down to stay on current image
                 waspaused = true;
+                if (next) {
+                    pause = false;
+                }
             }
         }
     }

@@ -93,7 +93,8 @@ class SlideShow extends JFrame {
             }
 
             if (e.getKeyChar() == 'n') { //next when pressing "n" key
-                System.out.println("This does nothing..");
+                System.out.println("Next..");
+                slides.next = true;
             }
 
             if (e.getKeyChar() == 'b') { //back when pressing "b" key
