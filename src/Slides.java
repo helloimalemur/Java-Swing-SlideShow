@@ -89,9 +89,6 @@ public class Slides {
                 if (next) {
                     pause = false;
                     next = false;
-                    //if (waspaused) {pause = true;}
-                    //setImage(pathlist, i+1);
-                    //sleeper();
                 }
             }
         }
