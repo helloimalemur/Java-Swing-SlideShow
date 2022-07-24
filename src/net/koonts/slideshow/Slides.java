@@ -15,6 +15,7 @@ public class Slides {
     public boolean back = false;
     public String[] listofimages = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
+    public Label overlaylabel = new Label();
     public Scalr scalr = new Scalr();
     public long slideinterval;
     public String path;
@@ -96,6 +97,33 @@ public class Slides {
                 }
             }
         }
+    }
+
+    public void overlay(String overlaystring, long overlaylong) {
+        try {
+            panel.remove(overlaylabel);
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
+        overlaylabel.setText(overlaystring + String.valueOf(overlaylong));
+        overlaylabel.setSize(300,100);
+        overlaylabel.setLocation(0,0);
+
+        overlaylabel.setBackground(Color.black);
+        overlaylabel.setForeground(Color.white);
+        try {
+            panel.add(overlaylabel);
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
+        overlaylabel.setVisible(true);
+        try {
+            Thread.sleep(1000);
+            panel.remove(overlaylabel);
+        } catch (Exception exception) {
+            System.out.println(exception);
+        }
+        overlaylabel.setVisible(false);
     }
 
     public void clearImages() {

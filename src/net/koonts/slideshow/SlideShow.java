@@ -13,9 +13,8 @@ class SlideShow extends JFrame {
     public static GraphicsDevice device;
     public java.util.Timer timer = new Timer();
 
-
-
     public static Slides slides; //initialize net.koonts.slideshow.Slides class
+
 
 
     public SlideShow(String paths) {
@@ -39,15 +38,6 @@ class SlideShow extends JFrame {
         start();
     }
 
-    public void pause() {
-        slides.pause = true;
-    }
-
-    public void resume() {
-        slides.pause = false;
-        slides.waspaused = false;
-        slides.next = false;
-    }
 
     public void start() {
         while (!(slides == null)) {
@@ -59,6 +49,19 @@ class SlideShow extends JFrame {
             slides.cycleImages(slides.listofimages);
         }
     }
+
+    public void pause() {
+        slides.pause = true;
+    }
+
+    public void resume() {
+        slides.pause = false;
+        slides.waspaused = false;
+        slides.next = false;
+    }
+
+
+
 
     public class Keys implements KeyListener, ActionListener {
 
@@ -78,12 +81,14 @@ class SlideShow extends JFrame {
             if (e.getKeyChar() == 'a') { // a key increases interval between slides
                 slides.slideinterval = slides.slideinterval + 3000;
                 System.out.println("interval: " + slides.slideinterval);
+                slides.overlay("Delay: ", slides.slideinterval);
             }
 
             if (e.getKeyChar() == 'z') { // z key decreased interval between slides
                 if (slides.slideinterval >= 3000) {
                     slides.slideinterval = slides.slideinterval - 2000;
                     System.out.println("interval: " + slides.slideinterval);
+                    slides.overlay("Delay: ", slides.slideinterval);
                 }
             }
 
