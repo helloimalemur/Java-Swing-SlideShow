@@ -4,13 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.*;
 import java.util.Timer;
 
 class SlideShow extends JFrame {
     public static GraphicsEnvironment graphics;
     public static GraphicsDevice device;
-    public Timer timer;
+    public Timer timer = new Timer();
+
 
     public static Slides slides = new Slides(); //initialize Slides class
     public SlideShow() {
@@ -18,36 +18,22 @@ class SlideShow extends JFrame {
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = graphics.getDefaultScreenDevice();
 
-        //on close
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        //set JFrame 'Slideshow' size and visibility
         setSize(1000,1000);
         setVisible(true);
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
-        //add panel created in Slides class and set visibility
         add(slides.panel);
-        //slides.panel.setSize(1000,1000);
-        // set 'this' JFrame 'Slideshow' to fullscreen
-        //setExtendedState(this.MAXIMIZED_BOTH);
-        //setResizable(false);
-        //pack();
-        //setBackground(Color.BLACK);
         Keys keys = new Keys();
         addKeyListener(keys);
         // set 'this' JFrame 'Slideshow' to be fullscreen
         device.setFullScreenWindow(SlideShow.this);
-        // start Timer schedule
+        slides.slideinterval = 3000;
         start();
-
-        //Button button = new Button();
-        //button.addActionListener(keys);
-
     }
 
     public void pause() {
-        //timer.cancel();
-        //slides.panel.removeAll();
         slides.pause = true;
     }
 
@@ -58,9 +44,7 @@ class SlideShow extends JFrame {
     public void start() {
         slides.pause = false;
         slides.panel.removeAll();
-        timer = new Timer();
-        TimerTask task = new TimerHelper(slides);
-        timer.schedule(task, 0, 3000);
+        slides.cycleImages(slides.loadImageGlob());
     }
 
     public class Keys implements KeyListener, ActionListener {
@@ -77,28 +61,42 @@ class SlideShow extends JFrame {
 
         @Override
         public void keyPressed(KeyEvent e) {
-            //System.out.println(e.toString());
-            if (e.getKeyChar() == 'q') {
+
+            if (e.getKeyChar() == 'a') { // a key increases interval between slides
+                slides.slideinterval = slides.slideinterval + 3000;
+                System.out.println("interval: " + slides.slideinterval);
+            }
+
+            if (e.getKeyChar() == 'z') { // z key decreased interval between slides
+                if(slides.slideinterval >= 3000) {
+                    slides.slideinterval = slides.slideinterval - 2000;
+                    System.out.println("interval: " + slides.slideinterval);
+                }
+            }
+
+            if (e.getKeyChar() == 'q') { //quit the app
+                System.out.println("Quitting..");
                 System.exit(0);
             }
 
             if (e.getKeyChar() == 'p') { //pause when pressing "p" key
+                System.out.println("Pausing..");
                 pause();
             }
 
-            if (e.getKeyChar() == 'r') {
-                //start();
+            if (e.getKeyChar() == 'r') { // resume
+                System.out.println("Resuming..");
                 resume();
             }
 
             if (e.getKeyChar() == 'n') { //next when pressing "n" key
-                slides.next = true;
+                System.out.println("This does nothing..");
             }
 
             if (e.getKeyChar() == 'b') { //back when pressing "b" key
+                System.out.println("Back one..");
                 slides.back = true;
             }
-
         }
 
         @Override

@@ -11,17 +11,12 @@ import java.io.IOException;
 public class Slides {
     public boolean pause = false;
     public boolean back = false;
-    public boolean next = false;
     public String[] imageglob = new String[0];
     public JPanel panel = new JPanel(new FlowLayout());
     public org.imgscalr.Scalr scalr = new Scalr();
+    public long slideinterval;
 
 
-
-    public void runner() {
-        System.out.println("starting slideshow");
-        loadImages(loadImageGlob());
-    }
     public String[] loadImageGlob() { //load images into String []
         FileContentReader fcr = new FileContentReader(null); // path to images
         System.out.println("grabImages\n");
@@ -30,7 +25,7 @@ public class Slides {
     }
 
     //scaler
-    public BufferedImage scaling(BufferedImage resizeMe) {
+    public BufferedImage scaleImage(BufferedImage resizeMe) {
         //BufferedImage resizeMe = ImageIO.read(new File("orig.jpg"));
         Dimension newMaxSize = new Dimension(SlideShow.device.getDisplayMode().getWidth()-20, SlideShow.device.getDisplayMode().getHeight()-20);
         return scalr.resize(resizeMe, Scalr.Mode.FIT_TO_HEIGHT,
@@ -42,7 +37,7 @@ public class Slides {
         try {
             BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
             System.out.println(imagepaths[i]);
-            Image image = scaling(bufferedImage); //scale image
+            Image image = scaleImage(bufferedImage); //scale image
             JLabel pic = new JLabel(new ImageIcon(image));
             Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(), SlideShow.device.getDisplayMode().getHeight());
             panel.setSize(dimension);
@@ -54,7 +49,7 @@ public class Slides {
             panel.setVisible(true);
             panel.updateUI();
             try {
-                Thread.sleep(5000);
+                Thread.sleep(slideinterval);
             } catch (Exception exception) {
                 System.out.println(exception);
             }
@@ -65,25 +60,17 @@ public class Slides {
     }
 
 
-    public void loadImages(String[] imagepaths) { /**/
+    public void cycleImages(String[] imagepaths) { /**/
         System.out.println("add images to caro"); /**/
 
         for (int i = 0; i <= imagepaths.length; i++) { /**/
-            /**/
-             /**/
-            if (next) { //next when pressing "n" key
-                if (i > 0) {
-                    //i = i + 1;
-                    //runner();
-                    next = false;
-                }
-            }
             if (back) { //back when pressing "b" key
                 if (i > 0) {
                     i = i - 2;
                     back = false;
                 }
             }
+            if (i < 0) {i++;} // don't let back set i less than 0
             if (!pause) { //pause when pressing "p" key
                 setImage(imagepaths, i);
             } else {
