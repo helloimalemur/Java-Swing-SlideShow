@@ -22,8 +22,8 @@ class SlideShow extends JFrame {
         //initialize graphics environment and attach to graphics device
         graphics = GraphicsEnvironment.getLocalGraphicsEnvironment();
         device = graphics.getDefaultScreenDevice();
-
-
+        setBackground(Color.black);
+        this.getContentPane().setBackground(Color.black);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(1000, 1000);
         setVisible(true);
@@ -34,6 +34,7 @@ class SlideShow extends JFrame {
         addKeyListener(keys);
         // set 'this' JFrame 'Slideshow' to be fullscreen
         device.setFullScreenWindow(SlideShow.this);
+        //slides.panel.setSize(this.getWidth(), this.getHeight());
         slides.slideinterval = 3000;
         start();
     }

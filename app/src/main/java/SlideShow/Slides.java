@@ -49,9 +49,9 @@ public class Slides {
             Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(), SlideShow.device.getDisplayMode().getHeight());
             panel.setSize(dimension);
             panel.setBackground(Color.BLACK);
-            panel.add(pic);
             pic.setSize(SlideShow.device.getDisplayMode().getWidth(), SlideShow.device.getDisplayMode().getHeight());
-            //pic.setSize(panel.getSize());
+            panel.add(pic);
+            pic.setBackground(Color.black);
             pic.setVisible(true);
             panel.setVisible(true);
             panel.updateUI();
