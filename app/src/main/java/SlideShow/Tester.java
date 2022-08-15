@@ -1,6 +1,4 @@
-package net.koonts.slideshow;
-
-import net.koonts.slideshow.Slides;
+package SlideShow;
 
 public class Tester {
     public static void main(String[] args) {

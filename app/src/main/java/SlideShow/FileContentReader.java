@@ -1,4 +1,4 @@
-package net.koonts.slideshow;
+package SlideShow;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

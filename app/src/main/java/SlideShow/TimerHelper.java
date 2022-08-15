@@ -1,6 +1,4 @@
-package net.koonts.slideshow;
-
-import net.koonts.slideshow.Slides;
+package SlideShow;
 
 import java.util.TimerTask;
 

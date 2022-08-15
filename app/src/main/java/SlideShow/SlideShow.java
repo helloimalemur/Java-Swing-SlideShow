@@ -1,4 +1,4 @@
-package net.koonts.slideshow;
+package SlideShow;
 
 import javax.swing.*;
 import java.awt.*;
