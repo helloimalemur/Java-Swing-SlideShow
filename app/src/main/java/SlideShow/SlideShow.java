@@ -29,6 +29,7 @@ class SlideShow extends JFrame {
         setVisible(true);
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
+
         add(slides.panel);
         Keys keys = new Keys();
         addKeyListener(keys);
