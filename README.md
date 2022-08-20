@@ -1,2 +1,2 @@
 # SlideShow
-swing based slideshow intended for use at event/gathering on projector
+swing based Java slideshow intended for use at event/gathering on projector
