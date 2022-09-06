@@ -19,4 +19,4 @@ test {
     useJUnitPlatform()
 }
 
-mainClassName = 'java.SlideShow.Main';
+mainClassName = 'SlideShow.Main';
