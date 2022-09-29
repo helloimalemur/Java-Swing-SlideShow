@@ -69,31 +69,31 @@ public class Slides {
             System.out.println(exception);
         }
     }
-    public void cycleImages(String[] pathlist) { /**/
-        System.out.println("Starting.."); /**/
+    public void cycleImages(String[] pathlist) {
+        System.out.println("Starting..");
         int index = 0;
-        while (index < pathlist.length) { /**/
+
+        while (index < pathlist.length) {
+
+            //back when pressing "b" key
             if (back && !(index<1)) { //back on b key //boolean set by keylistener
                 index = index - 2; //increments down twice to get last image
                 back = false;
-            } //back when pressing "b" key
+            }
 
-
-
-//            if (pause) { //if pause is false //pause when pressing "p" key //boolean set by keylistener
-//                index--; //increments i down to stay on current image
-//            }
-
+            //increment up for next image/skip
             if (next) {
                 index++;
                 next = false;
             }
 
-            //update image
+            //update image if not paused
             if (!pause) {
                 setImage(pathlist, index);
                 index++;
             }
+
+            //sleep for theshold
             sleeper();
         }
         cycleImages(pathlist);
