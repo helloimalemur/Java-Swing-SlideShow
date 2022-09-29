@@ -52,16 +52,6 @@ class SlideShow extends JFrame {
         }
     }
 
-    public void pause() {
-        slides.pause = true;
-    }
-
-    public void resume() {
-        slides.pause = false;
-        slides.waspaused = false;
-        slides.next = false;
-    }
-
 
 
 
@@ -101,12 +91,13 @@ class SlideShow extends JFrame {
 
             if (e.getKeyChar() == 'p') { //pause when pressing "p" key
                 System.out.println("Pausing..");
-                pause();
+                if (slides.pause) {slides.pause = false;}
+                else {slides.pause = true;}
             }
 
             if (e.getKeyChar() == 'r') { // resume
                 System.out.println("Resuming..");
-                resume();
+                slides.pause = false;
             }
 
             if (e.getKeyChar() == 'n') { //next when pressing "n" key

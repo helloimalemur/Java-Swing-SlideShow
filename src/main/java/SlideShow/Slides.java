@@ -71,32 +71,32 @@ public class Slides {
     }
     public void cycleImages(String[] pathlist) { /**/
         System.out.println("Starting.."); /**/
-        for (int i = 0; i < pathlist.length; i++) { /**/
-            if (back) { //back on b key //boolean set by keylistener
-                if (i > 0) {
-                    i = i - 2; //increments down twice to get last image
-                    pause = false;
-                    back = false;
-                }
+        int index = 0;
+        while (index < pathlist.length) { /**/
+            if (back && !(index<1)) { //back on b key //boolean set by keylistener
+                index = index - 2; //increments down twice to get last image
+                back = false;
             } //back when pressing "b" key
 
-            if (i < 0) {i++;} // don't let back set i less than 0
 
-            if (!pause) { //if pause is false //pause when pressing "p" key //boolean set by keylistener
-                setImage(pathlist, i);
-                sleeper();
-                if (waspaused) {pause = true;}// if we were paused before, pause again
 
-            } else {//pause was true
-                i--; //increments i down to stay on current image
-                waspaused = true; //sets false with 'R' resume key listener
+//            if (pause) { //if pause is false //pause when pressing "p" key //boolean set by keylistener
+//                index--; //increments i down to stay on current image
+//            }
 
-                if (next) {
-                    pause = false;
-                    next = false;
-                }
+            if (next) {
+                index++;
+                next = false;
             }
+
+            //update image
+            if (!pause) {
+                setImage(pathlist, index);
+                index++;
+            }
+            sleeper();
         }
+        cycleImages(pathlist);
     }
 
     public void overlay(String overlaystring, long overlaylong) {
