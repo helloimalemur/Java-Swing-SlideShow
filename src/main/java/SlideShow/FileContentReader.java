@@ -23,7 +23,7 @@ public class FileContentReader {
         }
     }
 
-    public String[] getFiles() {
+    public ArrayList<String> getFiles() {
         Path folderPath = Paths.get(FOLDER_PATH);
         // retrieve a list of the files in the folder
         try {
@@ -35,11 +35,8 @@ public class FileContentReader {
             System.out.print("unable to load images.. Quitting..");
             System.exit(0);
         }
-        String[] fileName = new String[fileNames.size()];
-        for (int i = 0; i < fileNames.size(); i++) {
-            fileName[i] = fileNames.get(i);
-        }
-        return fileName;
+
+        return fileNames;
     }
 
     public ArrayList<String> getFilesArray() {

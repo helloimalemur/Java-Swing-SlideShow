@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Slides {
@@ -13,7 +14,7 @@ public class Slides {
     public boolean next = false;
     public boolean waspaused = false;
     public boolean back = false;
-    public String[] listofimages = new String[0];
+    public ArrayList<String> listofimages = new ArrayList<>();
     public JPanel panel = new JPanel(new FlowLayout());
 
     public Scalr scalr = new Scalr();
@@ -39,11 +40,11 @@ public class Slides {
     }
 
     //
-    public void setImage(String[] imagepaths, int i) {
+    public void setImage(ArrayList<String> imagepaths, int i) {
         try {
             panel.removeAll();
-            BufferedImage bufferedImage = ImageIO.read(new File(imagepaths[i]));
-            System.out.println(imagepaths[i]);
+            BufferedImage bufferedImage = ImageIO.read(new File(imagepaths.get(i)));
+            System.out.println(imagepaths.get(i));
             Image image = scaleImage(bufferedImage); //scale image
             JLabel pic = new JLabel(new ImageIcon(image));
             Dimension dimension = new Dimension(SlideShow.device.getDisplayMode().getWidth(), SlideShow.device.getDisplayMode().getHeight());
@@ -69,11 +70,11 @@ public class Slides {
             System.out.println(exception);
         }
     }
-    public void cycleImages(String[] pathlist) {
+    public void cycleImages(ArrayList<String> pathlist) {
         System.out.println("Starting..");
         int index = 0;
 
-        while (index < pathlist.length) {
+        while (index < pathlist.size()) {
 
             //back when pressing "b" key
             if (back && !(index<1)) { //back on b key //boolean set by keylistener
